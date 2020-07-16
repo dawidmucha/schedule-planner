@@ -1,53 +1,24 @@
+import uniqid from 'uniqid'
+
 const initState = {
-	classes: [
-		{
-			name: 'classA1',
-			monday: [
-				{
-					class: "chemistry",
-					teacher: "BR",
-					classroom: "302",
-				},
-				{},
-				{
-					class: "math",
-					teacher: "AG",
-					classroom: "1B"
-				},
-				{
-					class: "math",
-					teacher: "AG",
-					classroom: "1B"
-				}
-			],
-			tuesday: [
-				{},
-				{},
-				{},
-				{},
-				{},
-				{
-					class: "pe",
-					teacher: "AA",
-					classroom: "GYM"
-				}
-			]				
-		},
-		{
-			name: 'classB2',
-			wednesday: [
-				{
-					class: "pe",
-					teacher: "AA",
-					classroom: "GYM"
-				}
-			]
-		}
-	]
+	classes: [],
+	teachers: [],
+	classrooms: [],
+	subjects: []
 }
 
 const reducer = (state = initState, action) => {
 	switch(action.type) {
+		case 'ADD_TEACHER':
+			return Object.assign({}, state, {
+				teachers: state.teachers.concat({
+					id: uniqid(),
+					name: action.payload.name,
+					abbv: action.payload.abbv,
+					subjects: action.payload.subjects,
+					schedule: action.payload.schedule
+				})
+			})
 		default: return state
 	}
 }
