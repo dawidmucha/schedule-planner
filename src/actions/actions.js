@@ -7,4 +7,13 @@ const addTeacher = (name, abbv, subjects, schedule) => {
 	}
 }
 
-export { addTeacher }
+const addSubject = (name) => {
+	return {
+		type: 'ADD_SUBJECT',
+		payload: {
+			name
+		}
+	}
+}
+
+export { addTeacher, addSubject }

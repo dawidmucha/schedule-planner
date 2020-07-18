@@ -19,6 +19,16 @@ const reducer = (state = initState, action) => {
 					schedule: action.payload.schedule
 				})
 			})
+
+		case 'ADD_SUBJECT': {
+			return Object.assign({}, state, {
+				subjects: state.subjects.concat({
+					id: uniqid(),
+					name: action.payload.name
+				})
+			})
+		}
+
 		default: return state
 	}
 }
