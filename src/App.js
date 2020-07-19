@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import Select from 'react-select'
 
-import { addTeacher, addSubject } from './actions/actions'
+import { addTeacher, addSubject, addClassroom } from './actions/actions'
 
 import './App.css'
 
@@ -21,6 +22,12 @@ const App = (props) => {
 		e.preventDefault()
 
 		props.addSubject(addSubject(form.addSubjectName))
+	}
+
+	const handleAddClassroom = (e) => {
+		e.preventDefault()
+
+		props.addClassroom(addClassroom)
 	}
 
 	const handleChange = (e) => {
@@ -47,13 +54,34 @@ const App = (props) => {
 					<input type='text' name='addSubjectName' onChange={(e) => handleChange(e)}></input>
 					<button type='submit'>submit</button>
 				</form>
+
+				<form onSubmit={(e) => handleAddClassroom(e)}>
+					<h1>ADD CLASSROOM</h1>
+					<Select options={[
+						{ label: 'i wanna', value: 'i wanna' },
+						{ label: 'kill myself', value: 'kill myself'}
+					 ]} />
+				</form>
 			</div>
 
 			<div className='right'>
 				<div>
+						{JSON.stringify(form)}
+				</div>
+				<div>
+					<h1>classes</h1>
+					{JSON.stringify(props.classes)}
+				</div>
+				<div>
+					<h1>teachers</h1>
 					{JSON.stringify(props.teachers)}
 				</div>
 				<div>
+					<h1>classrooms</h1>
+					{JSON.stringify(props.classrooms)}
+				</div>
+				<div>
+					<h1>subjects</h1>
 					{JSON.stringify(props.subjects)}
 				</div>
 			</div>

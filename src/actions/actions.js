@@ -16,4 +16,14 @@ const addSubject = (name) => {
 	}
 }
 
-export { addTeacher, addSubject }
+const addClassroom = (name, subjects) => {
+	return {
+		type: 'ADD_CLASSROOM',
+		payload: {
+			name,
+			subjects
+		}
+	}
+}
+
+export { addTeacher, addSubject, addClassroom }

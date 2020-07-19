@@ -8,9 +8,7 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 import App from './App'
 import reducer from './reducers/reducer'
 
-const store = createStore(reducer, devToolsEnhancer(
-  // /shrug
-));
+const store = createStore(reducer, devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store={store}>

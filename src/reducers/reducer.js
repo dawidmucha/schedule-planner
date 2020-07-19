@@ -29,6 +29,14 @@ const reducer = (state = initState, action) => {
 			})
 		}
 
+		case 'ADD_CLASSROOMS': {
+			return Object.assign({}, state, {
+				id: uniqid(),
+				subjects: action.payload.subjects,
+				name: action.payload.name
+			})
+		}
+
 		default: return state
 	}
 }
