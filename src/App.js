@@ -7,10 +7,7 @@ import { addTeacher, addSubject, addClassroom } from './actions/actions'
 import './App.css'
 
 const App = (props) => {
-	let [form, setForm] = useState({
-		name: '',
-		abbv: ''
-	})
+	let [form, setForm] = useState({})
 
 	let [subjects, setSubjects] = useState([])
 
@@ -21,7 +18,7 @@ const App = (props) => {
 	const handleAddTeacher = (e) => {
 		e.preventDefault()
 
-		props.addTeacher(addTeacher(form.addTeacherName, form.addTeacherAbbv, 'pussy', 'cat doll'))
+		props.addTeacher(addTeacher(form.addTeacherName, form.addTeacherAbbv, form.addTeacherSubjects, 'cat doll'))
 		
 		handleStateSubjects()
 	}
@@ -35,7 +32,8 @@ const App = (props) => {
 	const handleAddClassroom = (e) => {
 		e.preventDefault()
 
-		// props.addClassroom(addClassroom)
+		console.log(form.addClassroomName, form.addClassroomSubjects)
+		props.addClassroom(addClassroom(form.addClassroomName, form.addClassroomSubjects))
 	}
 
 	const handleChange = (e) => {
@@ -45,11 +43,25 @@ const App = (props) => {
 		})
 	}
 
+	const handleAddClassroomSelectChange = (e) => {		
+		setForm({
+			...form,
+			addClassroomSubjects: e
+		})
+	}
+
+	const handleAddTeacherSelectChange = (e) => {		
+		setForm({
+			...form,
+			addTeacherSubjects: e
+		})
+	}
+
 	const handleStateSubjects = () => {
 		setSubjects(Object.assign([], subjects, props.subjects.map(subject => {
 			return ({
 				label: subject.name,
-				value: subject.name
+				value: subject.id
 			})
 		})))
 	}
@@ -59,9 +71,9 @@ const App = (props) => {
 			<div className='left'>
 				<form onSubmit={(e) => handleAddTeacher(e)}>
 					<h1>ADD TEACHER</h1>
-					<input type='text' name='addTeacherName' onChange={(e) => handleChange(e)}></input>
-					<input type='text' name='addTeacherAbbv' onChange={(e) => handleChange(e)}></input>
-					<div>subjects</div>
+					name: <input type='text' name='addTeacherName' onChange={(e) => handleChange(e)}></input>
+					abbv: <input type='text' name='addTeacherAbbv' onChange={(e) => handleChange(e)}></input>
+					subjects: <Select isMulti options={subjects} onChange={(e) => handleAddTeacherSelectChange(e)} />
 					<div>schedule</div>
 					<button type='submit'>submit</button>
 				</form>
@@ -74,7 +86,8 @@ const App = (props) => {
 
 				<form onSubmit={(e) => handleAddClassroom(e)}>
 					<h1>ADD CLASSROOM</h1>
-					<Select isMulti options={subjects} />
+					name: <input type='text' name='addClassroomName' onChange={(e) => handleChange(e)}></input>
+					subjects: <Select isMulti options={subjects} onChange={(e) => handleAddClassroomSelectChange(e)} />
 					<button onClick={handleStateSubjects}>magic</button>
 				</form>
 			</div>
@@ -122,7 +135,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		addTeacher: (action) => dispatch(action),
-		addSubject: (action) => dispatch(action)
+		addSubject: (action) => dispatch(action),
+		addClassroom: (action) => dispatch(action)
 	}
 }
 

@@ -29,11 +29,13 @@ const reducer = (state = initState, action) => {
 			})
 		}
 
-		case 'ADD_CLASSROOMS': {
+		case 'ADD_CLASSROOM': {
 			return Object.assign({}, state, {
-				id: uniqid(),
-				subjects: action.payload.subjects,
-				name: action.payload.name
+				classrooms: state.classrooms.concat({
+					id: uniqid(),
+					name: action.payload.name,
+					subjects: action.payload.subjects
+				})
 			})
 		}
 
