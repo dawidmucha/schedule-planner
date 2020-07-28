@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import Select from 'react-select'
+import JSONFormatter from 'json-formatter-js'
+import ReactJson from 'react-json-view'
 
 import { addTeacher, addSubject, addClassroom } from './actions/actions'
 
 import './App.css'
 
 const App = (props) => {
-	let [form, setForm] = useState({})
+	let [form, setForm] = useState({ "points the": "finger" })
 
 	let [subjects, setSubjects] = useState([])
 
+	const formFormatted = new JSONFormatter(form)
+
 	useEffect(() => {
 		if(subjects.length !== props.subjects.length) handleStateSubjects()
+
+		console.log(formFormatted.render())
+		console.log(Object.values(formFormatted.render()))
 	})
 
 	const handleAddTeacher = (e) => {
@@ -94,8 +102,9 @@ const App = (props) => {
 
 			<div className='right'>
 				<h1>state</h1>
-				<div>
+				<div id='pussy'>
 						form: {JSON.stringify(form)}
+						<ReactJson src={form} />
 				</div>
 				<div>
 					 subjects: {JSON.stringify(subjects)}
@@ -120,6 +129,12 @@ const App = (props) => {
 				</div>
 			</div>
 		</div>
+	)
+}
+
+const Form = (props) => {
+	return (
+		props
 	)
 }
 
