@@ -8,7 +8,15 @@ import { addTeacher, addSubject, addClassroom } from './actions/actions'
 import './App.css'
 
 const App = (props) => {
-	let [form, setForm] = useState({})
+	let [form, setForm] = useState({
+		timetable: [
+			[false, false, false, false, false, false, false, false, false, false],
+			[false, false, false, false, false, false, false, false, false, false],
+			[false, false, false, false, false, false, false, false, false, false],
+			[false, false, false, false, false, false, false, false, false, false],
+			[false, false, false, false, false, false, false, false, false, false]
+		]
+	})
 
 	let [subjects, setSubjects] = useState([])
 
@@ -19,7 +27,7 @@ const App = (props) => {
 	const handleAddTeacher = (e) => {
 		e.preventDefault()
 
-		props.addTeacher(addTeacher(form.addTeacherName, form.addTeacherAbbv, form.addTeacherSubjects, form.tt22))
+		props.addTeacher(addTeacher(form.addTeacherName, form.addTeacherAbbv, form.addTeacherSubjects, form.timetable))
 		
 		handleStateSubjects()
 	}
@@ -59,19 +67,13 @@ const App = (props) => {
 	}
 
 	const handleTimetableChange = (e) => {
-		const timetable = [
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-		]
-		timetable[e.target.getAttribute('day')][e.target.getAttribute('peroid')] = e.target.checked
-		console.log(e.target.getAttribute('day'), e.target.value, e.target.checked)
+		const localTimetable = [...form.timetable]
+		
+		localTimetable[e.target.getAttribute('day')][e.target.getAttribute('period')] = e.target.checked
 		
 		setForm({
 			...form,
-			timetable
+			timetable: localTimetable
 		})
 	}
 
@@ -104,16 +106,16 @@ const App = (props) => {
 							</tr>
 							<tr>
 								<th>0th</th>
-								<th><input type='checkbox' id='tt10' name='tt10' value='tt10' day={0} peroid={0} onChange={handleTimetableChange} /></th>
-								<th><input type='checkbox' id='tt20' name='tt20' value='tt20' day={1} peroid={0} onChange={handleTimetableChange} /></th>
+								<th><input type='checkbox' id='tt10' name='tt10' value='tt10' day={0} period={0} onChange={handleTimetableChange} /></th>
+								<th><input type='checkbox' id='tt20' name='tt20' value='tt20' day={1} period={0} onChange={handleTimetableChange} /></th>
 								<th><input type='checkbox' id='tt30' name='tt30' value='tt30' /></th>
 								<th><input type='checkbox' id='tt40' name='tt40' value='tt40' /></th>
 								<th><input type='checkbox' id='tt50' name='tt50' value='tt50' /></th>
 							</tr>
 							<tr>
 								<th>1st</th>
-								<th><input type='checkbox' id='tt10' name='tt11' day={0} peroid={1} value='tt11' onChange={handleTimetableChange} /></th>
-								<th><input type='checkbox' id='tt20' name='tt21' day={1} peroid={1} value='tt21' onChange={handleTimetableChange} /></th>
+								<th><input type='checkbox' id='tt10' name='tt11' day={0} period={1} value='tt11' onChange={handleTimetableChange} /></th>
+								<th><input type='checkbox' id='tt20' name='tt21' day={1} period={1} value='tt21' onChange={handleTimetableChange} /></th>
 								<th><input type='checkbox' id='tt31' name='tt31' value='tt31' /></th>
 								<th><input type='checkbox' id='tt41' name='tt41' value='tt41' /></th>
 								<th><input type='checkbox' id='tt51' name='tt51' value='tt51' /></th>
