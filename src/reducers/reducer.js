@@ -39,6 +39,17 @@ const reducer = (state = initState, action) => {
 			})
 		}
 
+		case 'ADD_CLASS': {
+			return Object.assign({}, state, {
+				class: state.class.concat({
+					id: uniqid(),
+					name: action.payload.name,
+					timetable: action.payload.timetable,
+					cirriculum: action.payload.cirriculum
+				})
+			})
+		}
+
 		default: return state
 	}
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Select from 'react-select'
 import ReactJson from 'react-json-view'
 
-import { addTeacher, addSubject, addClassroom } from './actions/actions'
+import { addTeacher, addSubject, addClassroom, addClass } from './actions/actions'
 
 import './App.css'
 
@@ -19,9 +19,13 @@ const App = (props) => {
 	})
 
 	let [subjects, setSubjects] = useState([])
+	let [teachers, setTeachers] = useState([])
+	let [classrooms, setClassrooms] = useState([])
 
 	useEffect(() => {
 		if(subjects.length !== props.subjects.length) handleStateSubjects()
+		if(teachers.length !== props.teachers.length) handleStateTeachers()
+		if(classrooms.length !== props.classrooms.length) handleStateClassrooms()
 	})
 
 	const handleAddTeacher = (e) => {
@@ -43,6 +47,12 @@ const App = (props) => {
 
 		console.log(form.addClassroomName, form.addClassroomSubjects)
 		props.addClassroom(addClassroom(form.addClassroomName, form.addClassroomSubjects))
+	}
+
+	const handleAddClass = (e) => {
+		e.preventDefault()
+
+		console.log('whats with the homies who be dissin my boy')
 	}
 
 	const handleChange = (e) => {
@@ -82,6 +92,24 @@ const App = (props) => {
 			return ({
 				label: subject.name,
 				value: subject.id
+			})
+		})))
+	}
+
+	const handleStateTeachers = () => {
+		setTeachers(Object.assign([], teachers, props.teachers.map(teacher => {
+			return ({
+				label: teacher.name,
+				value: teacher.id
+			})
+		})))
+	}
+
+	const handleStateClassrooms = () => {
+		setClassrooms(Object.assign([], classrooms, props.classrooms.map(classroom => {
+			return ({
+				label: classroom.name,
+				value: classroom.id
 			})
 		})))
 	}
@@ -202,7 +230,7 @@ const App = (props) => {
 					<button onClick={handleStateSubjects}>magic</button>
 				</form>
 
-				<form onSubmit={(e) => {}}>
+				<form onSubmit={(e) => {handleAddClass(e)}}>
 					<h1>ADD CLASS</h1>
 					name: <input type='text' name='addClassName' onChange={(e) => handleChange(e)}></input>
 					<h3>cirriculum</h3>
@@ -229,30 +257,345 @@ const App = (props) => {
 						<tbody>
 							<tr>
 								<td>1st</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
-								<td>2nd</td>
+								<td>2nd</td><td>
+								<div>
+									subject: <Select options={subjects} />
+									teacher: <Select options={teachers} />
+									classroom: <Select options={classrooms} />
+								</div>
+							</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								
 							</tr>
 							<tr>
 								<td>3rd</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>4th</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>5th</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>6th</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>7th</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>8th</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
 							</tr>
 							<tr>
-								<td>9th</td>
+								<td>9th</td><td>
+								<div>
+									subject: <Select options={subjects} />
+									teacher: <Select options={teachers} />
+									classroom: <Select options={classrooms} />
+								</div>
+							</td>
+							<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								<td>
+									<div>
+										subject: <Select options={subjects} />
+										teacher: <Select options={teachers} />
+										classroom: <Select options={classrooms} />
+									</div>
+								</td>
+								
 							</tr>
 							
 						</tbody>
@@ -268,6 +611,12 @@ const App = (props) => {
 				</div>
 				<div>
 					 subjects: <ReactJson src={subjects} />
+				</div>
+				<div>
+					 teachers: <ReactJson src={teachers} />
+				</div>
+				<div>
+					 classrooms: <ReactJson src={classrooms} />
 				</div>
 
 				<h1>props</h1>
@@ -305,7 +654,8 @@ const mapDispatchToProps = dispatch => {
 	return {
 		addTeacher: (action) => dispatch(action),
 		addSubject: (action) => dispatch(action),
-		addClassroom: (action) => dispatch(action)
+		addClassroom: (action) => dispatch(action),
+		addClass: (action) => dispatch(action)
 	}
 }
 
